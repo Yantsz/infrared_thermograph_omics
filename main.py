@@ -36,10 +36,10 @@ pipeline = Pipeline([
     ('t_test_selector', TTestFeatureSelector(label_col='label', alpha=0.05)),
     ('scaler', CustomStandardScaler(label_col='label')),
     ('Rlasso_selector', RLassoFeatureSelector(label_col='label')),
-    ('classifier', LogisticRegression(C=0.1, solver='lbfgs'))
+    ('classifier', LogisticRegression(C=0.6)),
 ])
 
-X_train, X_test, y_train, y_test = train_test_split(df_merge.iloc[:,:-1],df_merge.iloc[:,-1], shuffle=True, random_state=1496, test_size=0.3,stratify=df_merge.iloc[:,-1])
+X_train, X_test, y_train, y_test = train_test_split(df_merge.iloc[:,:-1],df_merge.iloc[:,-1], shuffle=True, random_state=1276, test_size=0.3,stratify=df_merge.iloc[:,-1])
 pipeline.fit(X_train,y_train)
 #4 Evaluating on training and testing set
 y_pred_train = pipeline.predict(X_train)
@@ -50,21 +50,16 @@ y_pred_test = pipeline.predict(X_test)
 y_scores_test = pipeline.predict_proba(X_test)[:, 1]
 evaluate_model(y_test, y_pred_test, y_scores_test, 'Testing')
 
-evaluate_model(y_test, y_pred_test, y_scores_test, 'Testing')
-
-
+#5 Visualization and Comparison of Logistic Regression Model with Imaging Biomarker Features and Average Features
 pipeline2 = Pipeline([
     ('high_corr_filter', HighCorrelationFilter(threshold=0.99)),  # You can adjust the threshold
     ('t_test_selector', TTestFeatureSelector(label_col='label', alpha=0.05)),
     ('scaler', CustomStandardScaler(label_col='label')),
     ('Rlasso_selector', RLassoFeatureSelector(label_col='label'))])
 
-#5 Visualization and Comparison of Logistic Regression Model with Imaging Biomarker Features and Average Features
-
 pipeline2.fit(X_train,y_train)
 X,y=pipeline2.transform(X_train),y_train
 model = pipeline['classifier']
-
 
 coefficients = model.coef_[0]
 
