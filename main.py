@@ -179,9 +179,6 @@ calib_data <- val.prob(r_test$y_pred_test, as.numeric(r_test$y_test),stat=F,cex=
 
 r_test <- as.data.frame(r_test)
 dca(data=r_test, outcome = 'y_test',predictors=c('y_pred_test'))
-par(mar=c(5,5,2,1))
-par(mfrow=c(1,2))
-
 dev.off()
     '''
 )
