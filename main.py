@@ -61,10 +61,8 @@ pipeline2.fit(X_train,y_train)
 X,y=pipeline2.transform(X_train),y_train
 model = pipeline['classifier']
 
-coefficients = model.coef_[0]
-
 feature_names = model.feature_names_in_
-coefs = coefficients
+coefs = model.coef_[0]
 indices = np.argsort(coefs)
 
 fig,(ax1,ax2)=plt.subplots(1,2,figsize=(7.16, 2.7),width_ratios=[9,8])
