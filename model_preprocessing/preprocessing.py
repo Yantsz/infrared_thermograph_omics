@@ -68,18 +68,18 @@ class RLassoFeatureSelector(BaseEstimator, TransformerMixin):
     def __init__(self, label_col='label'):
         self.label_col = label_col
         self.features_ = None
-        pandas2ri.activate()  # 激活转换功能，一次性激活即可
+        pandas2ri.activate() 
 
     def fit(self, X, y):
-        # 将DataFrame转换为R的数据框
         X = X.copy()
         X[self.label_col] = y
+        # Convert DataFrame to R's data frame
         rdf = pandas2ri.py2rpy(X)
-        # 显式传递数据框到R环境中
+        # Explicitly pass the data frame into the R environment
         ro.globalenv['rdf'] = rdf
         ro.globalenv['label_col'] = self.label_col
 
-        # 定义和执行R代码
+        # Define and execute R code
         R_Cols = ro.r('''
         library(glmnet)
         library(dplyr)
@@ -112,6 +112,6 @@ class RLassoFeatureSelector(BaseEstimator, TransformerMixin):
     def transform(self, X):
         if self.features_ is None:
             raise RuntimeError("The fit method must be called before transform.")
-        # 确保只选择存在的特征
+        # Ensure only existing features are selected
         available_features = [f for f in self.features_ if f in X.columns]
         return X[available_features]
