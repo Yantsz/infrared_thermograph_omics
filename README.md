@@ -19,5 +19,5 @@ pip install -r requirements.txt
 Please note: Pyradiomics requires C++ support. You need to install Microsoft C++ build tools first.
 
 
-##Preprocessing
+## Preprocessing
 Our code base operates on NRRD images. We use the NRRD library to convert infrared thermal imaging data to the NRRD medical imaging format. Manual segmentation is performed using 3D Slicer (version 5.6.2).
