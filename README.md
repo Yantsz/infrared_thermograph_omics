@@ -12,7 +12,7 @@ To enable researchers to validate or further improve the Metabolic Syndrome radi
 This repository is intended for use by researchers evaluating the manuscript and the development and validation of the model. Note that this code is not intended for generating predictions for clinical decisions or any other clinical use. Users assume all risks associated with using this model.
 
 
-Our code runs on Python 3.11, and third-party libraries can be installed using the following command with pip:
+Our code runs on Python 3.11. The package requirements can be install with pip:
 ```
 pip install -r requirements.txt
 ```
