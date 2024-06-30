@@ -91,7 +91,7 @@ class RLassoFeatureSelector(BaseEstimator, TransformerMixin):
         set.seed(42)
         cv_model <- cv.glmnet(x = X, y = Y, family = 'binomial', alpha = 1, nfolds = 10)
 
-#         tiff('d:/desktop/lasso.tiff',width=6*300,height=3*300,units='px',res=300)
+#         tiff('./lasso.tiff',width=6*300,height=3*300,units='px',res=300)
 #         par(mar=c(3.5,3.5,2,1))
 #         par(mgp=c(1.5, 0.5, 0))
 #         par(mfrow=c(1,2))
