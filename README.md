@@ -13,5 +13,7 @@ This repository is intended for use by researchers evaluating the manuscript and
 
 
 Our code runs on Python 3.11, and third-party libraries can be installed using the following command with pip:
+```
 pip install -r requirements.txt
+```
 Please note: Pyradiomics requires C++ support. You need to install Microsoft C++ build tools first.
